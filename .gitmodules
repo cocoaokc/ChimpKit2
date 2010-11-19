@@ -1,0 +1,6 @@
+[submodule "Libs/ASIHTTPRequest"]
+	path = Libs/ASIHTTPRequest
+	url = https://github.com/pokeb/asi-http-request.git
+[submodule "Libs/JSON"]
+	path = Libs/JSON
+	url = https://github.com/stig/json-framework.git
