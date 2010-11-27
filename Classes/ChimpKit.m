@@ -17,6 +17,9 @@
 
 @synthesize apiUrl, apiKey, delegate, onSuccess, onFailure;
 
+#pragma mark -
+#pragma mark Initialization
+
 -(void)setAPIKey:(NSString*)key {
     apiKey = key;
     if (apiKey) {
@@ -38,7 +41,11 @@
 	return self;
 }
 
--(void)callAPIMethod:(NSString *)method andParams:(NSDictionary *)params {
+-(void)callAPIMethod:(NSString *)method withParams:(NSDictionary *)params {
+    [self callAPIMethod:method withParams:params andUserInfo:nil];
+}
+
+-(void)callAPIMethod:(NSString *)method withParams:(NSDictionary *)params andUserInfo:(NSDictionary *)userInfo {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", self.apiUrl, method];
 
     if (apiKey) {
@@ -47,6 +54,7 @@
 
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setDelegate:self.delegate];
+    [request setUserInfo:userInfo];
     [request setDidFinishSelector:self.onSuccess];
     [request setDidFailSelector:self.onFailure];
     [request setRequestMethod:@"POST"];
