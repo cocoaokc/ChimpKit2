@@ -35,7 +35,7 @@
 	self = [super init];
 	if (self != nil) {
         self.apiUrl  = @"https://api.mailchimp.com/1.3/?method=";
-        self.apiKey = key;
+        [self setAPIKey:key];
         self.delegate = aDelegate;
 	}
 	return self;
@@ -51,7 +51,7 @@
     if (apiKey) {
         urlString = [NSString stringWithFormat:@"%@&apikey=%@", urlString, apiKey];
     }
-
+    
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setDelegate:self.delegate];
     [request setUserInfo:userInfo];
