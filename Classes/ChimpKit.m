@@ -20,7 +20,7 @@
 #pragma mark -
 #pragma mark Initialization
 
--(void)setAPIKey:(NSString*)key {
+-(void)setApiKey:(NSString*)key {
     apiKey = key;
     if (apiKey) {
         //Parse out the datacenter and template it into the URL.
@@ -35,17 +35,17 @@
 	self = [super init];
 	if (self != nil) {
         self.apiUrl  = @"https://api.mailchimp.com/1.3/?method=";
-        [self setAPIKey:key];
+        [self setApiKey:key];
         self.delegate = aDelegate;
 	}
 	return self;
 }
 
--(void)callAPIMethod:(NSString *)method withParams:(NSDictionary *)params {
-    [self callAPIMethod:method withParams:params andUserInfo:nil];
+-(void)callApiMethod:(NSString *)method withParams:(NSDictionary *)params {
+    [self callApiMethod:method withParams:params andUserInfo:nil];
 }
 
--(void)callAPIMethod:(NSString *)method withParams:(NSDictionary *)params andUserInfo:(NSDictionary *)userInfo {
+-(void)callApiMethod:(NSString *)method withParams:(NSDictionary *)params andUserInfo:(NSDictionary *)userInfo {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", self.apiUrl, method];
 
     if (apiKey) {

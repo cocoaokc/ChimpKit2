@@ -32,7 +32,7 @@
                     autorelease];
     ck.onSuccess = @selector(requestCompleted:);
     ck.onFailure = @selector(requestCompleted:);
-    [ck callAPIMethod:@"lists" withParams:nil];
+    [ck callApiMethod:@"lists" withParams:nil];
 
     return YES;
 }

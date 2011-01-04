@@ -28,8 +28,8 @@
 
 
 -(id)initWithDelegate:(id)aDelegate andApiKey:(NSString *)key;
--(void)callAPIMethod:(NSString *)method withParams:(NSDictionary *)params;
--(void)callAPIMethod:(NSString *)method withParams:(NSDictionary *)params andUserInfo:(NSDictionary *)userInfo;
+-(void)callApiMethod:(NSString *)method withParams:(NSDictionary *)params;
+-(void)callApiMethod:(NSString *)method withParams:(NSDictionary *)params andUserInfo:(NSDictionary *)userInfo;
 
 //Begin API methods
 
