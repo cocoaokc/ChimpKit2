@@ -58,6 +58,7 @@
     [request setDidFinishSelector:self.onSuccess];
     [request setDidFailSelector:self.onFailure];
     [request setRequestMethod:@"POST"];
+    [request setShouldContinueWhenAppEntersBackground:YES];
 
     if (params) {
         NSMutableData *postData = [NSMutableData dataWithData:[[params JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding]];
