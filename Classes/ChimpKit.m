@@ -48,10 +48,6 @@
 -(void)callApiMethod:(NSString *)method withParams:(NSDictionary *)params andUserInfo:(NSDictionary *)userInfo {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", self.apiUrl, method];
 
-    if (apiKey) {
-        urlString = [NSString stringWithFormat:@"%@&apikey=%@", urlString, apiKey];
-    }
-    
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setDelegate:self.delegate];
     [request setUserInfo:userInfo];
@@ -60,11 +56,17 @@
     [request setRequestMethod:@"POST"];
     [request setShouldContinueWhenAppEntersBackground:YES];
 
-    if (params) {
-        NSMutableData *postData = [NSMutableData dataWithData:[[params JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding]];
-        [request setPostBody:postData];
+    NSMutableDictionary *postBodyParams = [NSMutableDictionary dictionary];
+    if (self.apiKey) {
+        [postBodyParams setValue:self.apiKey forKey:@"apikey"];
     }
-
+    
+    if (params) {
+        [postBodyParams setValuesForKeysWithDictionary:params];
+    }
+    
+    NSMutableData *postData = [NSMutableData dataWithData:[[postBodyParams JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setPostBody:postData];
     [request startAsynchronous];
 }
 
