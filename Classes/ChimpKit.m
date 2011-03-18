@@ -73,8 +73,8 @@
 //TODO: Stub out all version 1.3 API methods w/ required params and optional params in a single dictionary
 
 - (void)dealloc {
-    [apiKey release];
-    [apiUrl release];
+    self.apiKey = nil;
+    self.apiUrl = nil;
     [super dealloc];
 }
 
