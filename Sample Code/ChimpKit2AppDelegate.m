@@ -32,7 +32,21 @@
                     autorelease];
     ck.onSuccess = @selector(requestCompleted:);
     ck.onFailure = @selector(requestCompleted:);
-    [ck callApiMethod:@"lists" withParams:nil];
+    // This call would fetch lists
+    // [ck callApiMethod:@"lists" withParams:nil];
+        
+    // Build the params dictionary (please see documentation at http://apidocs.mailchimp.com/1.3 )
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@"<YOUR_LIST_ID>" forKey:@"id"];
+    [params setValue:@"someaddress@example.com" forKey:@"email_address"];
+    [params setValue:@"true" forKey:@"double_optin"];
+    
+    NSMutableDictionary *mergeVars = [NSMutableDictionary dictionary];
+    [mergeVars setValue:@"First" forKey:@"FNAME"];
+    [mergeVars setValue:@"Last" forKey:@"LNAME"];
+    [params setValue:mergeVars forKey:@"merge_vars"];
+    
+    [ck callApiMethod:@"listSubscribe" withParams:params];
 
     return YES;
 }
