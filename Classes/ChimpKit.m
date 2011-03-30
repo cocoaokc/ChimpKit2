@@ -110,12 +110,12 @@
 }
 
 -(NSString *)encodeString:(NSString *)unencodedString {
-    return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, 
-                                                               (CFStringRef)unencodedString, 
-                                                               NULL, 
-                                                               (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
-                                                               kCFStringEncodingUTF8);
-
+    NSString *encodedString = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, 
+                                                                                  (CFStringRef)unencodedString, 
+                                                                                  NULL, 
+                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
+                                                                                  kCFStringEncodingUTF8);
+    return [encodedString autorelease];
 }
 
 //TODO: Stub out all version 1.3 API methods w/ required params and optional params in a single dictionary
